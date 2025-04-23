@@ -1,40 +1,25 @@
 
-@misc{karunanayake2024examining,
-  title = {Examining the Rat in the Tunnel: Interpretable Multi-Label Classification of Tor-based Malware},
-  author = {Karunanayake, Ishan and AlSabah, Mashael and Ahmed, Nadeem and Jha, Sanjay},
-  year = {2024},
-  eprint = {2409.16639},
-  archivePrefix = {arXiv},
-  primaryClass = {cs.CR},
-  url = {https://arxiv.org/abs/2409.16639}
+@article{JAWAHERI2020101684,
+title = {Deanonymizing Tor hidden service users through Bitcoin transactions analysis},
+journal = {Computers & Security},
+volume = {89},
+pages = {101684},
+year = {2020},
+issn = {0167-4048},
+doi = {https://doi.org/10.1016/j.cose.2019.101684},
+url = {https://www.sciencedirect.com/science/article/pii/S0167404818309908},
+author = {Husam Al Jawaheri and Mashael Al Sabah and Yazan Boshmaf and Aiman Erbad},
+keywords = {Bitcoin, Tor hidden services, Privacy, Deanonymization, Attack},
+abstract = {With the rapid increase of threats on the Internet, people are continuously seeking privacy and anonymity. Services such as Bitcoin and Tor were introduced to provide anonymity for online transactions and Web browsing. Due to its pseudonymity model, Bitcoin lacks retroactive operational security, which means historical pieces of information could be used to identify a certain user. By exploiting publicly available information, we show how relying on Bitcoin for payments on Tor hidden services could lead to deanonymization of these services’ users. Such linking is possible by finding at least one past transaction in the Blockchain that involves their publicly declared Bitcoin addresses. To demonstrate the consequences of this deanonymization approach, we carried out a real-world experiment simulating a passive, limited adversary. We crawled 1.5K hidden services and collected 88 unique and active Bitcoin addresses. We then crawled 5B tweets and 1M BitcoinTalk forum pages and collected 4.2K and 41K unique Bitcoin addresses, respectively. Each user address was associated with an online identity along with its public profile information. By analyzing the transactions in the Blockchain, we were able to link 125 unique users to 20 hidden services, including sensitive ones, such as The Pirate Bay and Silk Road. We also analyzed two case studies in detail to demonstrate the implications of the information leakage on users anonymity. In particular, we confirm that Bitcoin addresses should be considered exploitable, as they can be used to deanonymize users retroactively. This is especially important for Tor hidden service users who actively seek and expect privacy and anonymity.}
 }
 
-@misc{dodia2024torBased,
-  title = {Tor-Based Malware Detection},
-  abstract = {A machine learning model for classifying encrypted traffic as benign or malicious without having to decrypt the traffic is provided that used traffic patterns from network logs to classify the traffic based on learned patterns for malware, and is capable of identifying zero-day malware is provided via: extracting encrypted traffic from communication logs for a network; identifying, from the encrypted traffic, while still encrypted, traffic patterns for users of the network; and classifying, via a machine learning model, the encrypted traffic as benign traffic or malicious traffic without decrypting the encrypted traffic according to the traffic patterns identified.},
-  author = {Dodia, Priyanka and {Al Sabah}, Mashael},
-  year = {2024},
-  month = {may},
-  type = {Patent},
-  note = {US2024154997; H04L 9/40 AI}
-}
+@inproceedings{10.1145/3548606.3560604, author = {Dodia, Priyanka and AlSabah, Mashael and Alrawi, Omar and Wang, Tao}, title = {Exposing the Rat in the Tunnel: Using Traffic Analysis for Tor-based Malware Detection}, year = {2022}, isbn = {9781450394505}, publisher = {Association for Computing Machinery}, address = {New York, NY, USA}, url = {https://doi.org/10.1145/3548606.3560604}, doi = {10.1145/3548606.3560604}, abstract = {Tor~citetor is the most widely used anonymous communication network with millions of daily users~citetormetrics. Since Tor provides server and client anonymity, hundreds of malware binaries found in the wild rely on it to hide their presence and hinder Command \& Control (C&C) takedown operations. We believe Tor is a paramount tool enabling online freedom and privacy, and blocking it to defend against such malware is infeasible for both users and organizations. In this work, we present effective traffic analysis approaches that can accurately identify Tor-based malware communication. We collect hundreds of Tor-based malware binaries, execute and examine more than 47,000 active encrypted malware connections and compare them with benign browsing traffic. In addition to traditional traffic analysis features (which work at the connection level), we propose global host-level network features to capture peculiar malware communication fingerprints across host logs. Our experiments confirm that our models are able to detect "zero-day'' malware connections with 0.7\% FPR even when malware connections constitute less than 5\% of Tor traces in the test set. Using multi-labeling approaches, we are able to accurately detect the malware behavior-based classes (grayware, ransomware, etc). Finally, we evaluate the robustness of our models on real-world enterprise logs and show that the classifiers can identify infected hosts even with missing features.}, booktitle = {Proceedings of the 2022 ACM SIGSAC Conference on Computer and Communications Security}, pages = {875–889}, numpages = {15}, keywords = {traffic analysis, tor, malware}, location = {Los Angeles, CA, USA}, series = {CCS '22} }
 
-@inproceedings{dodia2022exposing,
-  author = {Dodia, Priyanka and AlSabah, Mashael and Alrawi, Omar and Wang, Tao},
-  title = {Exposing the Rat in the Tunnel: Using Traffic Analysis for Tor-based Malware Detection},
-  year = {2022},
-  isbn = {9781450394505},
-  publisher = {Association for Computing Machinery},
-  address = {New York, NY, USA},
-  url = {https://doi.org/10.1145/3548606.3560604},
-  doi = {10.1145/3548606.3560604},
-  booktitle = {Proceedings of the 2022 ACM SIGSAC Conference on Computer and Communications Security},
-  pages = {875--889},
-  numpages = {15},
-  keywords = {malware, tor, traffic analysis},
-  location = {Los Angeles, CA, USA},
-  series = {CCS '22}
-}
+
+@inproceedings{10.1145/3545948.3545958, author = {AlSabah, Mashael and Nabeel, Mohamed and Boshmaf, Yazan and Choo, Euijin}, title = {Content-Agnostic Detection of Phishing Domains using Certificate Transparency and Passive DNS}, year = {2022}, isbn = {9781450397049}, publisher = {Association for Computing Machinery}, address = {New York, NY, USA}, url = {https://doi.org/10.1145/3545948.3545958}, doi = {10.1145/3545948.3545958}, abstract = {Existing phishing detection techniques mainly rely on blacklists or content-based analysis, which are not only evadable, but also exhibit considerable detection delays as they are reactive in nature. We observe through our deep dive analysis that artifacts of phishing are manifested in various sources of intelligence related to a domain even before its contents are online. In particular, we study various novel patterns and characteristics computed from viable sources of data including Certificate Transparency Logs, and passive DNS records. To compare benign and phishing domains, we construct thoroughly-verified realistic benign and phishing datasets. Our analysis shows clear differences between benign and phishing domains that can pave the way for content-agnostic approaches to predict phishing domains even before the contents of these webpages are up and running. To demonstrate the usefulness of our analysis, we train a classifier with distinctive features, and we show that we can (1) perform content-agnostic predictions with a very low FPR of 0.3\%, and high precision (98\%) and recall (90\%), and (2) predict phishing domains days before they are discovered by state-of-the-art content-based tools such as VirusTotal.}, booktitle = {Proceedings of the 25th International Symposium on Research in Attacks, Intrusions and Defenses}, pages = {446–459}, numpages = {14}, keywords = {phishing domains detection, passive DNS, machine learning, certificate transparency}, location = {Limassol, Cyprus}, series = {RAID '22} }
+
+
+
 
 @misc{popovic2025debackdoor,
   title = {DeBackdoor: A Deductive Framework for Detecting Backdoor Attacks on Deep Models with Limited Data},
