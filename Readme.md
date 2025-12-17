@@ -233,14 +233,6 @@ John Smith, 789/0123  ← The one from Stanford
 
 The script processes authors sequentially with a small delay to be respectful to DBLP servers.
 
-## What's Next?
-
-After getting comfortable with this simple version, you can:
-
-- Add GitHub automation (see WORDPRESS_SETUP.md)
-- Add change detection (see dblp_fetcher_smart.py)
-- Schedule regular updates
-
 ## Support
 
 - Check the log output for errors
@@ -249,5 +241,3 @@ After getting comfortable with this simple version, you can:
 - Use `--start` and `--end` to reduce results
 
 ---
-
-**That's it! Keep it simple.** 🎉
