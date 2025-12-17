@@ -13,6 +13,7 @@ Usage:
 import requests
 import argparse
 import logging
+import time
 from datetime import datetime
 
 # Setup logging
@@ -102,9 +103,14 @@ def search_author(author_name):
         return None
 
 
-def fetch_bibtex(pid, author_name):
+def fetch_bibtex(pid, author_name, max_retries=3):
     """
-    Fetch BibTeX for an author.
+    Fetch BibTeX for an author with retry logic.
+
+    Args:
+        pid: DBLP Person ID
+        author_name: Author's name
+        max_retries: Maximum number of retry attempts
 
     Returns:
         BibTeX string or None
@@ -113,19 +119,36 @@ def fetch_bibtex(pid, author_name):
 
     url = f"https://dblp.org/pid/{pid}.bib"
 
-    try:
-        response = requests.get(url, timeout=30)
-        response.raise_for_status()
+    for attempt in range(max_retries):
+        try:
+            response = requests.get(url, timeout=30)
+            response.raise_for_status()
 
-        bibtex = response.text
-        count = bibtex.count("@")
+            bibtex = response.text
+            count = bibtex.count("@")
 
-        logger.info(f"  Retrieved {count} publications")
-        return bibtex
+            logger.info(f"  Retrieved {count} publications")
+            return bibtex
 
-    except Exception as e:
-        logger.error(f"  Error fetching: {e}")
-        return None
+        except requests.exceptions.HTTPError as e:
+            if e.response.status_code == 429:  # Too Many Requests
+                if attempt < max_retries - 1:
+                    wait_time = (attempt + 1) * 5  # 5, 10, 15 seconds
+                    logger.warning(
+                        f"  Rate limited. Waiting {wait_time} seconds before retry {attempt + 2}/{max_retries}..."
+                    )
+                    time.sleep(wait_time)
+                else:
+                    logger.error(f"  Error fetching: {e}")
+                    return None
+            else:
+                logger.error(f"  Error fetching: {e}")
+                return None
+        except Exception as e:
+            logger.error(f"  Error fetching: {e}")
+            return None
+
+    return None
 
 
 def filter_bibtex_by_year(bibtex, start_year=None, end_year=None):
@@ -359,6 +382,10 @@ Examples:
         author_data_list.append({"name": author_name, "pid": pid, "bibtex": bibtex})
 
         print()
+
+        # Add delay to avoid rate limiting (except for last author)
+        if idx < len(authors):
+            time.sleep(3)  # Wait 3 seconds between requests
 
     # Check if we have any data
     if not author_data_list:
