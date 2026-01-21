@@ -134,7 +134,7 @@ python3 simple_dblp_fetcher.py --authors test_authors.txt --output test.bib
 
 The repository includes a GitHub Actions workflow (`.github/workflows/update-publications.yml`) that automatically updates `publications.bib`:
 
-- **Schedule**: Runs monthly on the 1st at 00:00 UTC
+- **Schedule**: Runs twice a month on the 1st and 15th at 00:00 UTC (approximately every 2 weeks)
 - **Manual trigger**: Can be triggered manually from GitHub Actions tab
 - **Behavior**: Fetches publications from 2020 to current year, commits and pushes changes if publications.bib is updated
 
