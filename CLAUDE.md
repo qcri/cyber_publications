@@ -100,6 +100,10 @@ python3 simple_dblp_fetcher.py --authors test_authors.txt --output test.bib
 # - Confirm publication counts match expectations
 ```
 
+### Git Commit Policy
+
+**IMPORTANT**: Do not add Claude as a co-author in git commits. When creating commits, use standard commit messages without the `Co-Authored-By: Claude` attribution.
+
 ### Common Modification Points
 
 - **Rate limiting**: Adjust `time.sleep(3)` at line 388 and retry logic at lines 134-143
