@@ -124,6 +124,31 @@ python3 simple_dblp_fetcher.py --authors test_authors.txt --output test.bib
 - Searches each entry for `year = {YYYY}` pattern (lines 176-182)
 - Entries without parseable years are excluded from filtered results
 
+## Automation
+
+### GitHub Actions Workflow
+
+The repository includes a GitHub Actions workflow (`.github/workflows/update-publications.yml`) that automatically updates `publications.bib`:
+
+- **Schedule**: Runs monthly on the 1st at 00:00 UTC
+- **Manual trigger**: Can be triggered manually from GitHub Actions tab
+- **Behavior**: Fetches publications from 2020 to current year, commits and pushes changes if publications.bib is updated
+
+The workflow uses `github-actions[bot]` as the committer, so no personal credentials are needed.
+
+### Manual Trigger
+
+To manually trigger the workflow:
+1. Go to GitHub repository → Actions tab
+2. Select "Update Publications" workflow
+3. Click "Run workflow" button
+
+### Modifying the Automation
+
+To change the schedule or year range, edit `.github/workflows/update-publications.yml`:
+- **Schedule**: Modify the `cron` expression (line 5)
+- **Year range**: Change `--start 2020 --end $CURRENT_YEAR` in the workflow
+
 ## Use Case: WordPress TeachPress Integration
 
 This tool is designed to generate BibTeX files for the WordPress TeachPress plugin:

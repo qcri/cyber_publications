@@ -1,0 +1,44 @@
+name: Update Publications
+
+on:
+  # Run on the 1st of every month at 00:00 UTC
+  schedule:
+    - cron: '0 0 1 * *'
+
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+
+jobs:
+  update-publications:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run DBLP fetcher
+        run: |
+          CURRENT_YEAR=$(date +%Y)
+          python3 simple_dblp_fetcher.py --start 2020 --end $CURRENT_YEAR
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # Check if there are changes
+          if git diff --quiet publications.bib; then
+            echo "No changes to publications.bib"
+          else
+            git add publications.bib
+            git commit -m "Updated publications (automated update)"
+            git push
+          fi
